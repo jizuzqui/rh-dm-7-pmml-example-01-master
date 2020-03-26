@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_CFE0942C-A3F2-43FD-926A-CC095127C219" xmlns:included1="TestTree.pmml" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_EB3228BF-0238-4FDD-ABCE-F7410B2A7B47" name="EvalPMML" expressionLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_CFE0942C-A3F2-43FD-926A-CC095127C219">
+  <dmn:extensionElements/>
+  <dmn:import id="_EA6B3A59-9CC9-4E06-87A7-C10267DDA208" name="TestTree" namespace="TestTree" locationURI="TestTree.pmml" importType="http://www.dmg.org/PMML-4_2"/>
+  <dmn:itemDefinition id="_7DD01A92-C090-4021-8AB2-6CC843A54167" name="Datos" isCollection="false">
+    <dmn:itemComponent id="_2EC12789-C2D8-4048-9A12-A7033A22F6C4" name="city" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_F46ADE86-0D6B-4BB2-AABC-7DB129F6673D" name="Temp Media" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_15C6BC3A-4623-4580-A7CF-FE203D68F21B" name="humedad" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_BE31B91B-28E2-4CEF-B0DE-51DB4D045C21" name="Datos">
+    <dmn:extensionElements/>
+    <dmn:variable id="_5891EDB5-C704-4F58-8A6A-94ECD8D8D732" name="Datos" typeRef="Datos"/>
+  </dmn:inputData>
+  <dmn:decision id="_D608DF58-04E7-4E11-B0F7-657CECB12BF4" name="Decision-1">
+    <dmn:extensionElements/>
+    <dmn:variable id="_41B5094A-82DF-4EF4-A375-FB7BDED3FE1D" name="Decision-1" typeRef="string"/>
+    <dmn:informationRequirement id="_6F4D0165-1345-4071-9148-6B090DDC1399">
+      <dmn:requiredInput href="#_BE31B91B-28E2-4CEF-B0DE-51DB4D045C21"/>
+    </dmn:informationRequirement>
+    <dmn:knowledgeRequirement id="_4056CA74-F369-476B-94A0-3AD41F21A2C2">
+      <dmn:requiredKnowledge href="#_1AD611A1-AF05-4CDA-A910-B3E2703360EF"/>
+    </dmn:knowledgeRequirement>
+    <dmn:decisionTable id="_7CD36D89-0EDA-41CA-A693-DDEEBE19FEA0" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_2A7F5698-7722-4EBA-9402-3848D0D50686">
+        <dmn:inputExpression id="_8DDABF93-7702-43F7-9C0A-68D40422416B" typeRef="string">
+          <dmn:text>Datos.city</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_B666092A-FDCA-4286-B562-7BE6C387572F" typeRef="string"/>
+      <dmn:rule id="_A6E3D0A9-3E6D-4121-B6DC-248F5925B116">
+        <dmn:inputEntry id="_6816E996-D43A-48FC-8166-F23C3947403C">
+          <dmn:text>"bcn"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_5DA038D8-1FC7-4C06-A7EE-2CA99889E2CE">
+          <dmn:text>BKM-1(Datos.humedad, Datos.Temp Media) </dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+      <dmn:rule id="_F726BE80-FC35-469B-BB5C-2884EE2923EE">
+        <dmn:inputEntry id="_29C75845-2173-4279-BB56-716EC8B177A3">
+          <dmn:text>"mad"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_08063749-A7F2-4BF7-A136-7A1AE4C78A47">
+          <dmn:text>BKM-1(Datos.humedad , Datos.Temp Media)</dmn:text>
+        </dmn:outputEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:businessKnowledgeModel id="_1AD611A1-AF05-4CDA-A910-B3E2703360EF" name="BKM-1">
+    <dmn:extensionElements/>
+    <dmn:variable id="_F9689067-D77F-437C-A698-927599AE2633" name="BKM-1" typeRef="string"/>
+    <dmn:encapsulatedLogic id="_39379C08-5104-4E4F-B8E3-91F4F1428D23" kind="PMML">
+      <dmn:formalParameter id="_7FBEDAE6-9137-46E5-ACF9-86DB99B33B02" name="humidity" typeRef="number"/>
+      <dmn:formalParameter id="_0F3920CE-E708-4545-84D8-5601C3C28C30" name="temperature" typeRef="number"/>
+      <dmn:context id="_5C4BBCB4-D7A5-4494-B639-CE4243B7D175">
+        <dmn:contextEntry>
+          <dmn:variable id="_F1E286BB-A3E3-4E4C-A638-17F1DC89BA3E" name="document" typeRef="string"/>
+          <dmn:literalExpression id="_3D7E881D-BFE8-46B5-8D64-8534BCD1F65A">
+            <dmn:text>"TestTree"</dmn:text>
+          </dmn:literalExpression>
+        </dmn:contextEntry>
+        <dmn:contextEntry>
+          <dmn:variable id="_B3F9A15F-B937-4D83-8B53-12E8F9768B66" name="model" typeRef="string"/>
+          <dmn:literalExpression id="_E73ED753-981D-44CC-BB4F-8BE00174D507">
+            <dmn:text>"SampleMine"</dmn:text>
+          </dmn:literalExpression>
+        </dmn:contextEntry>
+      </dmn:context>
+    </dmn:encapsulatedLogic>
+  </dmn:businessKnowledgeModel>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_7CD36D89-0EDA-41CA-A693-DDEEBE19FEA0">
+            <kie:width>50.0</kie:width>
+            <kie:width>234.0</kie:width>
+            <kie:width>544.0</kie:width>
+            <kie:width>562.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_5C4BBCB4-D7A5-4494-B639-CE4243B7D175">
+            <kie:width>50.0</kie:width>
+            <kie:width>100.0</kie:width>
+            <kie:width>200.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_3D7E881D-BFE8-46B5-8D64-8534BCD1F65A">
+            <kie:width>200.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_E73ED753-981D-44CC-BB4F-8BE00174D507">
+            <kie:width>200.0</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_39379C08-5104-4E4F-B8E3-91F4F1428D23">
+            <kie:width>50.0</kie:width>
+            <kie:width>370.0</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-_BE31B91B-28E2-4CEF-B0DE-51DB4D045C21" dmnElementRef="_BE31B91B-28E2-4CEF-B0DE-51DB4D045C21" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="276" y="191" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_D608DF58-04E7-4E11-B0F7-657CECB12BF4" dmnElementRef="_D608DF58-04E7-4E11-B0F7-657CECB12BF4" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="276" y="66" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-_1AD611A1-AF05-4CDA-A910-B3E2703360EF" dmnElementRef="_1AD611A1-AF05-4CDA-A910-B3E2703360EF" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="520" y="100" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-_6F4D0165-1345-4071-9148-6B090DDC1399" dmnElementRef="_6F4D0165-1345-4071-9148-6B090DDC1399">
+        <di:waypoint x="326" y="191"/>
+        <di:waypoint x="326" y="116"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-_4056CA74-F369-476B-94A0-3AD41F21A2C2" dmnElementRef="_4056CA74-F369-476B-94A0-3AD41F21A2C2">
+        <di:waypoint x="520" y="125"/>
+        <di:waypoint x="376" y="91"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
